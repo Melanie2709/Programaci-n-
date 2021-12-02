@@ -11,19 +11,11 @@ int main(){
   printf("Cuantos numeros deseas: ");
   scanf("%d", &stop);
 
-  //printf("0\n1\n");
-  //for(inicio; paro; incremento/decremento){}
- 
-  printf("0\n1\n");
-  for (cont=1;cont<=stop-2;cont++){
-      
-      z=x+y;  //z = 1 + 1= 2
+  for (cont=0;cont<stop;cont++){
+     printf("%d\n",z);
       x=y;  //x=1
       y=z;  //y=2
-      printf("%d\n",z);
+      z=x+y;
   }
-  
- 
- 
   return 0;
 }

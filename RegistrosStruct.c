@@ -16,15 +16,15 @@ struct info{
 struct academico{
 	char numeroEmpleado[13];
 	struct info datos_profesor;
-}profesor[5];
+}profesor[10];
 
 struct alumnado{
 	char numeroCuenta[13];
 	char promedio[5];
 	struct info datos_estudiante; //
-}estudiante[5];
+}estudiante[10];
 
-//Función para remover el salto de línea final
+//Funciï¿½n para remover el salto de lï¿½nea final
 void remueveSaltoLinea (char *cadena){
   char *saltoLinea;
   saltoLinea = strchr (cadena, '\n'); //Buscar un caracter en una cadena
@@ -37,25 +37,30 @@ int main(void){
 	int op, reg;
 
 do{
-	puts("¿Qué deseas capturar?");
-	puts("1.-\'Profesorado\'");
+	puts("Â¿QuÃ© deseas capturar?");
+	puts("1.-Profesorado");
 	puts("2.-Alumnado");
 	puts("3.-Salir");
-	printf("Opción [1\\2\\3] :");
+	printf("OpciÃ³n [1\\2\\3] :");
 
 	scanf("%i", &op);
 	if(op == 1){
 		getchar();
-		puts("¿Cuántos registros deseas?");
-		scanf("%i", &reg);
-		for ( i=0; i<reg; i++){
+		puts("Â¿CuÃ¡ntos registros deseas?");
+		scanf("%i", &reg); // reg= 2
+		for ( i=0; i<reg; i++){ // i = 1:  1 < 2 
 			puts("--------------------------");
-			printf("\n\"Dame número empleado:\"");
+			printf("\n\"Dame nÃºmero empleado:\"");
 			fflush(stdin);
+            // profesor[0].numeroEmpleado = 111111\n
+            // profesor[1].numeroEmpleado = 222222\n
 			fgets(profesor[i].numeroEmpleado,13,stdin);
+            // profesor[0].numeroEmpleado = 111111 
 			remueveSaltoLinea(profesor[i].numeroEmpleado);
 			printf("Dame nombre: ");
 			fflush(stdin);
+            // profesor[0].datos_profesor.nombre = Daniel\n
+            // profesor[1].datos_profesor.nombre = Luis\n
 			fgets(profesor[i].datos_profesor.nombre, 25, stdin);
 			remueveSaltoLinea(profesor[i].datos_profesor.nombre);
 			printf("Dame apellido paterno: ");
@@ -66,15 +71,14 @@ do{
 			fflush(stdin);
 			fgets(profesor[i].datos_profesor.apMaterno, 25, stdin);
 			remueveSaltoLinea(profesor[i].datos_profesor.apMaterno);
-		//printf("\n\tID: %s \tNombre:%s\tApellido Paterno: %s\tApellido Materno: %s", profesor.numeroEmpleado, profesor.datos_profesor.nombre, profesor.datos_profesor.apPaterno, profesor.datos_profesor.apMaterno);
 		} //Fin de For
 	}else if(op == 2){
 		getchar();
-		puts("¿Cuántos registros deseas?");
+		puts("Â¿CuÃ¡ntos registros deseas?");
 		scanf("%i", &reg);
 		for (i=0; i<reg; i++){
 			puts("--------------------------");
-		printf("Dame número de estudiate: ");
+		printf("Dame nÃºmero de estudiate: ");
 		fflush(stdin);
 		fgets(estudiante[i].numeroCuenta,13,stdin);
 		printf("Dame nombre: ");
@@ -86,23 +90,24 @@ do{
 		printf("Dame apellido materno: ");
 		fflush(stdin);
 		fgets(estudiante[i].datos_estudiante.apMaterno, 25, stdin);
-		//Debe imprimirse el arreglo del struct estudiante
 		//printf("\n\tID: %s \n\tNombre:%s\n\tApellido Paterno: %s\n\tApellido Materno: %s", estudiante.numeroCuenta, estudiante.datos_estudiante.nombre, estudiante.datos_estudiante.apPaterno, estudiante.datos_estudiante.apMaterno);   
 	}
 	}else{
-		printf("Dame una opción válida");
+		printf("Dame una opciï¿½n vï¿½lida");
 	}
 }while (op != 3);
 	puts("\n----------------------------");
 	puts("Datos Profesores:");
 	for ( i=0; i<reg; i++){
+        printf("\nRegistro: %d\n", i);
 	    printf("\n\tID: %s \tNombre completo: %s%s%s", profesor[i].numeroEmpleado, profesor[i].datos_profesor.nombre, profesor[i].datos_profesor.apPaterno, profesor[i].datos_profesor.apMaterno);
 	    //printf("\n\tID: %s \tNombre:%s\tApellido Paterno: %s\tApellido Materno: %s", profesor[i].numeroEmpleado, profesor[i].datos_profesor.nombre, profesor[i].datos_profesor.apPaterno, profesor[i].datos_profesor.apMaterno);
-	puts("\n----------------------------");
-	puts("Datos Estudiantes:");
-           //Aquí solo imprime el último registro n-1 veces porque se sobreescribe, es necesario recorrerlo utilizando índices, como el ejemplo de profesor: profesor[i].numeroEmpleado
-	   printf("\n\tID: %s \tNombre completo: %s%s%s",estudiante.numeroCuenta,estudiante.datos_estudiante.nombre,estudiante.datos_estudiante.apPaterno,estudiante.datos_estudiante.apMaterno);
-	printf("\n\tID: %s \tNombre completo: %s%s%s", estudiante[i].numeroCuenta, estudiante[i].datos_estudiante.nombre, estudiante[i].datos_estudiante.apPaterno, estudiante[i].datos_estudiante.apMaterno);
+    }
+   	puts("\n----------------------------");
+    puts("Datos Estudiantes:");
+    for ( i=0; i<reg; i++){
+        printf("Registro: %d\n", i);
+	    printf("\n\tID: %s \tNombre completo: %s%s%s", estudiante[i].numeroCuenta, estudiante[i].datos_estudiante.nombre, estudiante[i].datos_estudiante.apPaterno, estudiante[i].datos_estudiante.apMaterno);
 	}
 	puts("\n----------------------------");
 	return 0;
