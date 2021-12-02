@@ -22,7 +22,7 @@ struct alumnado{
 	char numeroCuenta[13];
 	char promedio[5];
 	struct info datos_estudiante; //
-}estudiante;
+}estudiante[5];
 
 //Función para remover el salto de línea final
 void remueveSaltoLinea (char *cadena){
@@ -76,17 +76,18 @@ do{
 			puts("--------------------------");
 		printf("Dame número de estudiate: ");
 		fflush(stdin);
-		fgets(estudiante.numeroCuenta,13,stdin);
+		fgets(estudiante[i].numeroCuenta,13,stdin);
 		printf("Dame nombre: ");
 		fflush(stdin);
-		fgets(estudiante.datos_estudiante.nombre, 25, stdin);
+		fgets(estudiante[i].datos_estudiante.nombre, 25, stdin);
 		printf("Dame apellido paterno: ");
 		fflush(stdin);
-		fgets(estudiante.datos_estudiante.apPaterno, 25, stdin);
+		fgets(estudiante[i].datos_estudiante.apPaterno, 25, stdin);
 		printf("Dame apellido materno: ");
 		fflush(stdin);
-		fgets(estudiante.datos_estudiante.apMaterno, 25, stdin);
-		printf("\n\tID: %s \n\tNombre:%s\n\tApellido Paterno: %s\n\tApellido Materno: %s", estudiante.numeroCuenta, estudiante.datos_estudiante.nombre, estudiante.datos_estudiante.apPaterno, estudiante.datos_estudiante.apMaterno);   
+		fgets(estudiante[i].datos_estudiante.apMaterno, 25, stdin);
+		//Debe imprimirse el arreglo del struct estudiante
+		//printf("\n\tID: %s \n\tNombre:%s\n\tApellido Paterno: %s\n\tApellido Materno: %s", estudiante.numeroCuenta, estudiante.datos_estudiante.nombre, estudiante.datos_estudiante.apPaterno, estudiante.datos_estudiante.apMaterno);   
 	}
 	}else{
 		printf("Dame una opción válida");
@@ -97,8 +98,9 @@ do{
 	for ( i=0; i<reg; i++){
 	    printf("\n\tID: %s \tNombre completo: %s%s%s", profesor[i].numeroEmpleado, profesor[i].datos_profesor.nombre, profesor[i].datos_profesor.apPaterno, profesor[i].datos_profesor.apMaterno);
 	    //printf("\n\tID: %s \tNombre:%s\tApellido Paterno: %s\tApellido Materno: %s", profesor[i].numeroEmpleado, profesor[i].datos_profesor.nombre, profesor[i].datos_profesor.apPaterno, profesor[i].datos_profesor.apMaterno);
-	   	puts("\n----------------------------");
+	puts("\n----------------------------");
 	puts("Datos Estudiantes:");
+           //Aquí solo imprime el último registro n-1 veces porque se sobreescribe, es necesario recorrerlo utilizando índices, como el ejemplo de profesor: profesor[i].numeroEmpleado
 	   printf("\n\tID: %s \tNombre completo: %s%s%s",estudiante.numeroCuenta,estudiante.datos_estudiante.nombre,estudiante.datos_estudiante.apPaterno,estudiante.datos_estudiante.apMaterno);
 	printf("\n\tID: %s \tNombre completo: %s%s%s", estudiante[i].numeroCuenta, estudiante[i].datos_estudiante.nombre, estudiante[i].datos_estudiante.apPaterno, estudiante[i].datos_estudiante.apMaterno);
 	}
